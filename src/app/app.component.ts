@@ -24,7 +24,7 @@ export class AppComponent {
 
   public barChartOptions: ChartConfiguration<'bar'>['options'] = {
     responsive: true,
-  };
+   };
 
   constructor() {
   }
