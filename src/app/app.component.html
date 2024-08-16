@@ -1,14 +1,6 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6 col-md-6 mb-6 chart-container">
-      <canvas baseChart [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
-        [legend]="barChartLegend" [type]="'bar'">
-      </canvas>
-    </div>
-    <div class="col-lg-6 col-md-6 mb-6 chart-container">
-      <canvas baseChart [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
-        [legend]="barChartLegend" [type]="'bar'">
-      </canvas>
-    </div>
-   </div>
-<router-outlet />
+<nav>
+  <a routerLink="/home">Home</a>
+  <a routerLink="/about">About</a>
+</nav>
+
+<router-outlet></router-outlet>
