@@ -1,1 +1,34 @@
-<p>about works!</p>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="container mt-4">
+    <div class="mb-3">
+      <label for="dropdown" class="form-label">Dropdown:</label>
+      <select id="dropdown" class="form-select" formControlName="dropdown">
+        <option *ngFor="let option of dropdownOptions" [value]="option">{{ option }}</option>
+      </select>
+      <div *ngIf="myForm.get('dropdown')?.invalid && myForm.get('dropdown')?.touched" class="text-danger">
+        <small class="error">Dropdown selection is required</small>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="textbox" class="form-label">Textbox:</label>
+      <input id="textbox" type="text" class="form-control" formControlName="textbox" maxlength="9">
+      <div *ngIf="myForm.get('textbox')?.invalid && myForm.get('textbox')?.touched" class="text-danger">
+        <small class="error" *ngIf="myForm.get('textbox')?.errors?.['required']">Textbox input is required</small>
+        <small class="error" *ngIf="myForm.get('textbox')?.errors?.['minlength']">Textbox must be exactly 9 characters</small>
+        <small class="error" *ngIf="myForm.get('textbox')?.errors?.['maxlength']">Textbox must be exactly 9 characters</small>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="datepicker" class="form-label">Datepicker:</label>
+      <input id="datepicker" matInput [matDatepicker]="picker" class="form-control" formControlName="datepicker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <div *ngIf="myForm.get('datepicker')?.invalid && myForm.get('datepicker')?.touched" class="text-danger">
+        <small class="error">Date selection is required</small>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Submit</button>
+  </form>
+  
