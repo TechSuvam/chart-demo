@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
+import { FormDataService } from '../services/shared.service';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,7 @@ import { ChartConfiguration } from 'chart.js';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  formData: any;
   title = 'chart-demo';
   public barChartLegend = true;
   public barChartPlugins = [];
@@ -26,6 +28,12 @@ export class HomeComponent {
     responsive: true,
    };
 
-  constructor() {
+  constructor(private formDataService: FormDataService) {
+  }
+  ngOnInit() {
+    this.formDataService.currentFormData.subscribe(data => {
+      this.formData = data;
+      console.log(this.formData);
+    });
   }
 }
